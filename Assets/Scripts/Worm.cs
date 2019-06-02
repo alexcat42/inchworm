@@ -18,9 +18,10 @@ public class Worm : MonoBehaviour
 
     // Wormy UI
     public Text note;
-    public Color noteColorGood;
-    public Color noteColorNeutral;
-    public Color noteColorBad;
+    public Color colorGood;
+    public Color colorNeutral;
+    public Color colorBad;
+    public Color colorWater;
 
     [HideInInspector]
     public float length;
@@ -39,7 +40,7 @@ public class Worm : MonoBehaviour
         headSR = head.gameObject.GetComponent<SpriteRenderer>();
         buttSR = butt.gameObject.GetComponent<SpriteRenderer>();
 
-        note.color = noteColorGood;
+        note.color = colorGood;
         note.text = "Let's Go!";
         StartCoroutine(TextDelay());
         //line = GetComponent<LineRenderer>();
@@ -81,14 +82,15 @@ public class Worm : MonoBehaviour
 
     }
 
-    public void Die()
+    public void Die(string message, Color messageColor)
     {
         isDead = true;
-        bodySR.color = noteColorBad;
-        headSR.color = noteColorBad;
-        buttSR.color = noteColorBad;
-        note.color = noteColorBad;
-        note.text = "You Have Drowned!";
+        // Make the head & butt stop moving immediately
+        bodySR.color = messageColor;
+        headSR.color = messageColor;
+        buttSR.color = messageColor;
+        note.color = messageColor;
+        note.text = message;
         StartCoroutine(Respawn());
     }
 

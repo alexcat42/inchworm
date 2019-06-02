@@ -654,9 +654,10 @@ MonoBehaviour:
   - {fileID: 21300012, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
   isDead: 0
   note: {fileID: 2038003104523558735}
-  noteColorGood: {r: 0.21960786, g: 0.20784315, b: 0.33333334, a: 1}
-  noteColorNeutral: {r: 0.60784316, g: 0.6117647, b: 0.5176471, a: 1}
-  noteColorBad: {r: 0.7254902, g: 0.21176472, b: 0.3921569, a: 1}
+  colorGood: {r: 0.21960786, g: 0.20784315, b: 0.33333334, a: 1}
+  colorNeutral: {r: 0.60784316, g: 0.6117647, b: 0.5176471, a: 1}
+  colorBad: {r: 0.7254902, g: 0.21176472, b: 0.3921569, a: 1}
+  colorWater: {r: 0.30980393, g: 0.67058825, b: 0.74509805, a: 1}
   length: 3
 --- !u!120 &87303691240767311
 LineRenderer:

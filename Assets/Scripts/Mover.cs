@@ -66,11 +66,20 @@ public class Mover : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            worm.Die("A Blue Jay Ate You!", worm.colorBad);
+        }
+    }
+
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Water") && !isMoving)
         {
-            worm.Die();
+            worm.Die("You Have Drowned!", worm.colorWater);
         }
     }
 
