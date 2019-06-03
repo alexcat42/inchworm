@@ -41,7 +41,7 @@ public class Worm : MonoBehaviour
         buttSR = butt.gameObject.GetComponent<SpriteRenderer>();
 
         note.color = colorGood;
-        note.text = "Let's Go!";
+        note.text = "TWINCHWORM, Let's Go!";
         StartCoroutine(TextDelay());
         //line = GetComponent<LineRenderer>();
     }
@@ -85,18 +85,26 @@ public class Worm : MonoBehaviour
     public void Die(string message, Color messageColor)
     {
         isDead = true;
-        // Make the head & butt stop moving immediately
+
+        head.GetComponent<Mover>().Die();
+        butt.GetComponent<Mover>().Die();
+
+        // Tint Worm sprites
         bodySR.color = messageColor;
         headSR.color = messageColor;
         buttSR.color = messageColor;
+
+        // Display UI
         note.color = messageColor;
         note.text = message;
+
+        // Respawn with delay
         StartCoroutine(Respawn());
     }
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

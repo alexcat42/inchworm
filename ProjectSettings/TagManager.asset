@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Water
   - Enemy
+  - TallGrass
   layers:
   - Default
   - TransparentFX
