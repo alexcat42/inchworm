@@ -23,8 +23,14 @@ public class WormFace : MonoBehaviour
 
         if (other.CompareTag("MysticFlower"))
         {
-            worm.CollectFlower();
+            worm.CollectFlower(other.transform);
             other.gameObject.SetActive(false);
+        }
+
+        if (other.CompareTag("Message"))
+        {
+            string message = other.GetComponent<MessageBlock>().message;
+            worm.DisplayMessage(message, worm.colorGood);
         }
     }
 

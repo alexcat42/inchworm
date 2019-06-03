@@ -9,6 +9,8 @@ TagManager:
   - TallGrass
   - Turtle
   - MysticFlower
+  - Message
+  - Cocoon
   layers:
   - Default
   - TransparentFX

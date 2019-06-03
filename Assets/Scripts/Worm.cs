@@ -49,9 +49,13 @@ public class Worm : MonoBehaviour
     private Vector3 headOffset;
     private Vector3 buttOffset;
 
+    // Cocoon Spawner
+    private Cocoon cocoon;
+
     // Start is called before the first frame update
     void Start()
     {
+        cocoon = GameObject.FindWithTag("Cocoon").GetComponent<Cocoon>();
         offset = Camera.main.transform.position - body.position;
         bodySR = body.gameObject.GetComponent<SpriteRenderer>();
         headSR = head.gameObject.GetComponent<SpriteRenderer>();
@@ -60,13 +64,10 @@ public class Worm : MonoBehaviour
         headMover = head.gameObject.GetComponent<Mover>();
         buttMover = butt.gameObject.GetComponent<Mover>();
 
-        note.color = colorGood;
-        note.text = "Twinchworm, Let's Go!";
-        StartCoroutine(TextDelay());
-        foreach(GameObject panel in panels)
-        {
+        foreach(GameObject panel in panels) 
             panel.SetActive(true);
-        }
+
+        DisplayMessage("Twinchworm, Let's Go!", colorGood);
         //line = GetComponent<LineRenderer>();
     }
 
@@ -103,27 +104,17 @@ public class Worm : MonoBehaviour
 
         if (!flipped && butt.position.x > head.position.x)
         {
-            // Flip Over
             flipped = true;
             body.localScale = new Vector3(bodyScale, -1.0f, 1.0f);
             head.localScale = new Vector3(1.0f, -1.0f, 1.0f);
             butt.localScale = new Vector3(1.0f, -1.0f, 1.0f);
-
-            //bodySR.flipY = true;
-            //headSR.flipY = true;
-            //buttSR.flipY = true;
         }
         else if (flipped && butt.position.x < head.position.x)
         {
-            // Flip back to normal
             flipped = false;
             body.localScale = new Vector3(bodyScale, 1.0f, 1.0f);
             head.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             butt.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-            //bodySR.flipY = false;
-            //headSR.flipY = false;
-            //buttSR.flipY = false;
         }
 
         if (onTurtle)
@@ -146,9 +137,7 @@ public class Worm : MonoBehaviour
         headSR.color = messageColor;
         buttSR.color = messageColor;
 
-        // Display UI
-        note.color = messageColor;
-        note.text = message;
+        DisplayMessage(message, messageColor);
 
         // Respawn with delay
         StartCoroutine(Respawn());
@@ -158,6 +147,13 @@ public class Worm : MonoBehaviour
     {
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void DisplayMessage(string message, Color messageColor)
+    {
+        note.color = messageColor;
+        note.text = message;
+        StartCoroutine(TextDelay());
     }
 
     private IEnumerator TextDelay()
@@ -217,9 +213,15 @@ public class Worm : MonoBehaviour
         }
     }
 
-    public void CollectFlower()
+    public void CollectFlower(Transform flowerTransform)
     {
         mysticFlowerPieces++;
         mysticFlowerText.text = "Mystical Flower Pieces: " + mysticFlowerPieces.ToString() + " / 8";
+        cocoon.transform.position = flowerTransform.position;
+    }
+
+    void GoToCheckpoint()
+    {
+
     }
 }
