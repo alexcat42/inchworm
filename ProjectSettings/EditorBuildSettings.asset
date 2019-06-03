@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TileScene.unity
     guid: 37f52b157da69456fb059032da169206
   - enabled: 0
-    path: Assets/Scenes/Twinchworm.unity
+    path: Assets/Scenes/UNUSED/Twinchworm.unity
     guid: 4f4d49bf99f174f189b59c5e97e191c5
   m_configObjects: {}

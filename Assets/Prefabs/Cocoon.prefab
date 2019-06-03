@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5660355705709857405}
   m_Layer: 0
   m_Name: Cocoon
-  m_TagString: Untagged
+  m_TagString: Cocoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

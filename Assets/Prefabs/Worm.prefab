@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 745938246913995325}
   - component: {fileID: 2038003104523558735}
   m_Layer: 5
-  m_Name: Note
+  m_Name: MessageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Twinchworm, Let's Go!
+  m_Text: '
+
+'
 --- !u!1 &4158099682245096281
 GameObject:
   m_ObjectHideFlags: 0
