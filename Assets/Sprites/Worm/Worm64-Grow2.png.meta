@@ -10,8 +10,9 @@ TextureImporter:
     21300010: Worm64-Grow2_5
     21300012: Worm64-Grow2_6
     21300014: Worm64-Grow2_7
-    21300016: Worm64-Grow2_8
-    21300018: Worm64-Grow2_9
+    21300016: Worm64-Walk0
+    21300018: Worm64-Walk1
+    21300020: Worm64-Sad
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -254,7 +255,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Worm64-Grow2_8
+      name: Worm64-Walk0
       rect:
         serializedVersion: 2
         x: 128
@@ -274,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Worm64-Grow2_9
+      name: Worm64-Walk1
       rect:
         serializedVersion: 2
         x: 0
@@ -289,6 +290,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 2c3366b8877a74a86a198e386edb1198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Worm64-Sad
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1875}
+      border: {x: 16, y: 0, z: 22, w: 45}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6616f66c77e704217863116f4e64d651
       vertices: []
       indices: 
       edges: []

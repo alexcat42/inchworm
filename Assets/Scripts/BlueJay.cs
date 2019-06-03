@@ -55,10 +55,11 @@ public class BlueJay : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 attacking = true;
-                worm = other.GetComponentInParent<Worm>();
                 anim.Play("Attack");
                 rb.velocity = Vector3.zero;
-                worm.Die("A Blue Jay Ate You!", worm.colorBad);
+                worm = other.GetComponentInParent<Worm>();
+                if (worm != null)
+                    worm.Die("A Blue Jay Ate You!", worm.colorBad);
                 StartCoroutine(Fly());
             }
         }

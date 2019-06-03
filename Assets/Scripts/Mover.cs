@@ -81,7 +81,7 @@ public class Mover : MonoBehaviour
 
     public void Die()
     {
-        anim.Play("Idle");
+        anim.Play("Sad");
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0.0f;
     }
