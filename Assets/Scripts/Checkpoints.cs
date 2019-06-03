@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Checkpoints : MonoBehaviour
 {
+    [HideInInspector]
     public int mysticFlowerPieces;
+    [HideInInspector]
+    public int mysticFlowersTotal;
     // Thanks to Blackthorn Productions for checkpoint script
     private static Checkpoints instance;
 
@@ -15,6 +18,7 @@ public class Checkpoints : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(instance);
+            mysticFlowersTotal = GameObject.FindGameObjectsWithTag("MysticFlower").Length;
         }
         else
         {

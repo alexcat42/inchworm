@@ -224,7 +224,9 @@ public class Worm : MonoBehaviour
 
     void UpdateFlowerText()
     {
-        mysticFlowerText.text = "Mystical Flower Pieces: " + checkpoints.mysticFlowerPieces.ToString();
+        string flowersCurrent = checkpoints.mysticFlowerPieces.ToString();
+        string flowersTotal = checkpoints.mysticFlowersTotal.ToString();
+        mysticFlowerText.text = "Mystical Flower Pieces: " + flowersCurrent + "/" + flowersTotal;
     }
 
     void GoToCheckpoint()
