@@ -2,29 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cocoon : MonoBehaviour
+public class Checkpoints : MonoBehaviour
 {
-
+    public int mysticFlowerPieces;
     // Thanks to Blackthorn Productions for checkpoint script
-    private static Cocoon cocoonSpawner;
+    private static Checkpoints instance;
 
     // Start is called before the first frame update
     void Awake()
     {
-        if (cocoonSpawner == null)
+        if (instance == null)
         {
-            cocoonSpawner = this;
-            DontDestroyOnLoad(cocoonSpawner);
+            instance = this;
+            DontDestroyOnLoad(instance);
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

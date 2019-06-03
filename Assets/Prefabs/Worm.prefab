@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8117980915973936951
 Transform:
   m_ObjectHideFlags: 0
@@ -939,7 +939,6 @@ MonoBehaviour:
   - {fileID: 21300014, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
   isDead: 0
   onTurtle: 0
-  mysticFlowerPieces: 0
   note: {fileID: 2038003104523558735}
   colorGood: {r: 0.9568628, g: 0.8941177, b: 0.5254902, a: 1}
   colorNeutral: {r: 0.60784316, g: 0.6117647, b: 0.5176471, a: 1}

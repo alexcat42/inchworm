@@ -15,7 +15,7 @@ public class Worm : MonoBehaviour
     public Sprite[] bodySprites;
     public bool isDead;
     public bool onTurtle;
-    public int mysticFlowerPieces;
+    //public int mysticFlowerPieces;
 
     // Wormy UI
     public Text note;
@@ -50,13 +50,14 @@ public class Worm : MonoBehaviour
     private Vector3 buttOffset;
 
     // Cocoon Spawner
-    private Cocoon cocoon;
+    private Checkpoints checkpoints;
+    private Transform cocoon;
 
     // Start is called before the first frame update
     void Start()
     {
-        cocoon = GameObject.FindWithTag("Cocoon").GetComponent<Cocoon>();
         offset = Camera.main.transform.position - body.position;
+        GoToCheckpoint();
         bodySR = body.gameObject.GetComponent<SpriteRenderer>();
         headSR = head.gameObject.GetComponent<SpriteRenderer>();
         buttSR = butt.gameObject.GetComponent<SpriteRenderer>();
@@ -67,7 +68,8 @@ public class Worm : MonoBehaviour
         foreach(GameObject panel in panels) 
             panel.SetActive(true);
 
-        DisplayMessage("Twinchworm, Let's Go!", colorGood);
+        //DisplayMessage("Twinchworm, Let's Go!", colorGood);
+        UpdateFlowerText();
         //line = GetComponent<LineRenderer>();
     }
 
@@ -215,13 +217,25 @@ public class Worm : MonoBehaviour
 
     public void CollectFlower(Transform flowerTransform)
     {
-        mysticFlowerPieces++;
-        mysticFlowerText.text = "Mystical Flower Pieces: " + mysticFlowerPieces.ToString() + " / 8";
+        checkpoints.mysticFlowerPieces++;
         cocoon.transform.position = flowerTransform.position;
+        UpdateFlowerText();
+    }
+
+    void UpdateFlowerText()
+    {
+        mysticFlowerText.text = "Mystical Flower Pieces: " + checkpoints.mysticFlowerPieces.ToString();
     }
 
     void GoToCheckpoint()
     {
-
+        checkpoints = GameObject.FindWithTag("Checkpoints").GetComponent<Checkpoints>();
+        cocoon = GameObject.FindWithTag("Cocoon").transform;
+        if (cocoon != null)
+        {
+            body.position += cocoon.position;
+            head.position += cocoon.position;
+            butt.position += cocoon.position;
+        }
     }
 }
