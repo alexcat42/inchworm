@@ -13,11 +13,37 @@ public class WormFace : MonoBehaviour
         mover = GetComponentInParent<Mover>();
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Water") && !worm.isDead && !mover.isMoving)
+        if (other.CompareTag("Turtle"))
         {
-            worm.Die("You Have Drowned!", worm.colorWater);
+            mover.onTurtle = true;
+            worm.GetOnTurtle(other.transform);
+        }
+
+        if (other.CompareTag("MysticFlower"))
+        {
+            worm.CollectFlower();
+            other.gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Turtle"))
+        {
+            mover.onTurtle = false;
+            worm.GetOffTurtle();
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Water"))
+        {
+            if (!worm.isDead && !mover.onTurtle && !mover.isMoving)
+                worm.Die("You Have Drowned!", worm.colorWater);
+        }
+    }
+
 }

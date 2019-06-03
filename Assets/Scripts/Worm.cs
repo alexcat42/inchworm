@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class Worm : MonoBehaviour
 {
-
-   public float maxLength;
+    public float maxLength;
     public float speed;
     public float health;
     public Transform body;
@@ -16,6 +15,7 @@ public class Worm : MonoBehaviour
     public Sprite[] bodySprites;
     public bool isDead;
     public bool onTurtle;
+    public int mysticFlowerPieces;
 
     // Wormy UI
     public Text note;
@@ -23,7 +23,8 @@ public class Worm : MonoBehaviour
     public Color colorNeutral;
     public Color colorBad;
     public Color colorWater;
-    public GameObject panel;
+    public GameObject[] panels;
+    public Text mysticFlowerText;
 
     [HideInInspector]
     public float length;
@@ -38,6 +39,16 @@ public class Worm : MonoBehaviour
     private SpriteRenderer headSR;
     private SpriteRenderer buttSR;
 
+    // Movers
+    private Mover headMover;
+    private Mover buttMover;
+
+    // Turtle Riding Stuff
+    private Transform turtle;
+    private Vector3 bodyOffset;
+    private Vector3 headOffset;
+    private Vector3 buttOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,10 +57,16 @@ public class Worm : MonoBehaviour
         headSR = head.gameObject.GetComponent<SpriteRenderer>();
         buttSR = butt.gameObject.GetComponent<SpriteRenderer>();
 
+        headMover = head.gameObject.GetComponent<Mover>();
+        buttMover = butt.gameObject.GetComponent<Mover>();
+
         note.color = colorGood;
         note.text = "Twinchworm, Let's Go!";
         StartCoroutine(TextDelay());
-        panel.SetActive(true);
+        foreach(GameObject panel in panels)
+        {
+            panel.SetActive(true);
+        }
         //line = GetComponent<LineRenderer>();
     }
 
@@ -109,7 +126,10 @@ public class Worm : MonoBehaviour
             //buttSR.flipY = false;
         }
 
-
+        if (onTurtle)
+        {
+            RideTurtle();
+        }
         //Debug.Log("Worm Length: " + length + " | Worm Sprite: " + bodySR.sprite.name);
 
     }
@@ -136,7 +156,7 @@ public class Worm : MonoBehaviour
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -165,12 +185,41 @@ public class Worm : MonoBehaviour
         butt.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
-    public void RideTurtle(Transform turtle)
+    public void GetOnTurtle(Transform turtleTransform)
     {
         onTurtle = true;
-        //body.parent = turtle;
-        //head.parent = turtle;
-        //butt.parent = turtle;
+        if (headMover.onTurtle && buttMover.onTurtle)
+        {
+            //body.position = turtle.position;
+            turtle = turtleTransform;
+            bodyOffset = turtle.position - body.position;
+            headOffset = turtle.position - head.position;
+            buttOffset = turtle.position - butt.position;
 
+        }
+    }
+
+    public void GetOffTurtle()
+    {
+        if (!headMover.onTurtle && !buttMover.onTurtle)
+        {
+            onTurtle = false;
+        }
+    }
+
+    void RideTurtle()
+    {
+        if (turtle != null)
+        {
+            body.position = turtle.position + bodyOffset;
+            head.position = turtle.position + headOffset;
+            butt.position = turtle.position + buttOffset;
+        }
+    }
+
+    public void CollectFlower()
+    {
+        mysticFlowerPieces++;
+        mysticFlowerText.text = "Mystical Flower Pieces: " + mysticFlowerPieces.ToString() + " / 8";
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1429891391693227044}
   m_Layer: 0
   m_Name: Turtle
-  m_TagString: Untagged
+  m_TagString: Turtle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  delayAtBank: 3
+  delayAtBank: 4
   faceRight: 0
 --- !u!50 &5740682816710626167
 Rigidbody2D:
@@ -142,5 +142,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.9375}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0

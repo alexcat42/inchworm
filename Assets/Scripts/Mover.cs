@@ -10,6 +10,7 @@ public class Mover : MonoBehaviour
     public Worm worm;               // Reference to Worm component of WormBody game object
     public GameObject otherEnd;
     public bool isMoving;
+    public bool onTurtle;
 
     private Mover otherMover;
     private Rigidbody2D rb;
@@ -66,13 +67,13 @@ public class Mover : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (!worm.isDead && !isMoving && other.CompareTag("Water") )
-        {
-            worm.Die("You Have Drowned!", worm.colorWater);
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D other)
+    //{
+    //    if (!worm.isDead && !isMoving && other.CompareTag("Water") )
+    //    {
+    //        worm.Die("You Have Drowned!", worm.colorWater);
+    //    }
+    //}
 
     private void LateUpdate()
     {
@@ -85,4 +86,5 @@ public class Mover : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0.0f;
     }
+
 }

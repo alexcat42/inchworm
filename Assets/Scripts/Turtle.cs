@@ -46,6 +46,7 @@ public class Turtle : MonoBehaviour
 
         // If player head/butt enters, then carryingWorm = true
         // If other player segment enters, then moving = true, and keep going
+        // Cancel that! Much easier to just have him patrol!
 
 
     }
@@ -57,22 +58,23 @@ public class Turtle : MonoBehaviour
             StartCoroutine(WaitAtBank());
         }
 
-        else if (waiting && other.CompareTag("Player"))
-        {
-            carryingWorm = true;
-            worm = other.GetComponentInParent<Worm>();
-            worm.RideTurtle(transform);
-            //anim.Play("Attack");
-            rb.velocity = Vector3.zero;
-            //worm.Die("A Blue Jay Ate You!", worm.colorBad);
-            //StartCoroutine(Fly());
-        }
+        //else if (waiting && other.CompareTag("Player"))
+        //{
+        //    carryingWorm = true;
+        //    worm = other.GetComponentInParent<Worm>();
+        //    worm.RideTurtle(transform);
+        //    //anim.Play("Attack");
+        //    rb.velocity = Vector3.zero;
+        //    //worm.Die("A Blue Jay Ate You!", worm.colorBad);
+        //    //StartCoroutine(Fly());
+        //}
 
     }
 
     IEnumerator WaitAtBank()
     {
         waiting = true;
+        moving = false;
 
         // Stop Turtle Movement
         Vector2 vel = rb.velocity;
@@ -91,5 +93,6 @@ public class Turtle : MonoBehaviour
         // Send the turtle on its way
         rb.velocity = vel;
         waiting = false;
+        moving = true;
     }
 }

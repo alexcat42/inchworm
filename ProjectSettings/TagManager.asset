@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - TallGrass
   - Turtle
+  - MysticFlower
   layers:
   - Default
   - TransparentFX
