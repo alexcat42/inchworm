@@ -255,6 +255,7 @@ public class Worm : MonoBehaviour
     IEnumerator RestartWithDelay()
     {
         yield return new WaitForSeconds(5);
+        Destroy(checkpoints.gameObject);
         SceneManager.LoadScene(0);
     }
 
