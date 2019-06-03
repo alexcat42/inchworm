@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5660355705709857404}
   - component: {fileID: 5660355705709857405}
-  - component: {fileID: 5660355705709857406}
   m_Layer: 0
   m_Name: Cocoon
   m_TagString: Untagged
@@ -80,15 +79,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5660355705709857406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5660355705709857407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2151b4e6dc58b44c29999d17766757eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
