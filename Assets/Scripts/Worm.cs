@@ -27,7 +27,10 @@ public class Worm : MonoBehaviour
     public float length;
 
     //private LineRenderer line;
+    // Offset for Camera
     private Vector3 offset;
+
+    // Sprite Renderers
     private SpriteRenderer bodySR;
     private SpriteRenderer headSR;
     private SpriteRenderer buttSR;
@@ -41,7 +44,7 @@ public class Worm : MonoBehaviour
         buttSR = butt.gameObject.GetComponent<SpriteRenderer>();
 
         note.color = colorGood;
-        note.text = "TWINCHWORM, Let's Go!";
+        note.text = "Twinchworm, Let's Go!";
         StartCoroutine(TextDelay());
         //line = GetComponent<LineRenderer>();
     }
@@ -57,12 +60,13 @@ public class Worm : MonoBehaviour
         body.localScale = new Vector3(bodyScale, 1.0f, 1.0f);
 
         if (length > 2.35f) bodySR.sprite = bodySprites[0];
-        else if (length > 2.2f) bodySR.sprite = bodySprites[1];
-        else if (length > 2.05f) bodySR.sprite = bodySprites[2];
-        else if (length > 1.9f) bodySR.sprite = bodySprites[3];
-        else if (length > 1.75f) bodySR.sprite = bodySprites[4];
-        else if (length > 1.5f) bodySR.sprite = bodySprites[5];
-        else bodySR.sprite = bodySprites[6];
+        else if (length > 2.175f) bodySR.sprite = bodySprites[1];
+        else if (length > 2.0f) bodySR.sprite = bodySprites[2];
+        else if (length > 1.825f) bodySR.sprite = bodySprites[3];
+        else if (length > 1.65f) bodySR.sprite = bodySprites[4];
+        else if (length > 1.475f) bodySR.sprite = bodySprites[5];
+        else if (length > 1.3f) bodySR.sprite = bodySprites[6];
+        else bodySR.sprite = bodySprites[7];
 
         if (butt.position.x > head.position.x)
         {
@@ -116,6 +120,20 @@ public class Worm : MonoBehaviour
 
     void LateUpdate()
     {
-        Camera.main.transform.position = body.position + offset;
+        if (!isDead)
+        {
+            Camera.main.transform.position = body.position + offset;
+        }
+    }
+
+    public void CarriedAway(Transform bird)
+    {
+        body.parent = bird;
+        head.parent = bird;
+        butt.parent = bird;
+
+        //body.GetComponent<Rigidbody2D>().isKinematic = true;
+        head.GetComponent<Rigidbody2D>().isKinematic = true;
+        butt.GetComponent<Rigidbody2D>().isKinematic = true;
     }
 }

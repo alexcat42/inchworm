@@ -32,9 +32,9 @@ RectTransform:
   m_Father: {fileID: 7439676054168742738}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -48}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 48}
   m_SizeDelta: {x: 320, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &745938246913995325
@@ -57,8 +57,8 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Material: {fileID: 2100000, guid: 48cf5de4c73c141d4882c953f4af8879, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -67,7 +67,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 48cf5de4c73c141d4882c953f4af8879, type: 3}
-    m_FontSize: 16
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -75,7 +75,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Twinchworm, Let's Go!
@@ -204,7 +204,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4939309586441788754}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -679,19 +679,20 @@ MonoBehaviour:
   head: {fileID: 6639244053233637794}
   butt: {fileID: 6639244052898362307}
   bodySprites:
-  - {fileID: 21300000, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
-  - {fileID: 21300002, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
-  - {fileID: 21300004, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
-  - {fileID: 21300006, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
-  - {fileID: 21300008, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
-  - {fileID: 21300010, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
-  - {fileID: 21300012, guid: 9470ebab330854b6b8c5ec4a3167168c, type: 3}
+  - {fileID: 21300000, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
+  - {fileID: 21300002, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
+  - {fileID: 21300004, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
+  - {fileID: 21300006, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
+  - {fileID: 21300008, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
+  - {fileID: 21300010, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
+  - {fileID: 21300012, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
+  - {fileID: 21300014, guid: b87ae3de5b59745fa96c4ba1bddd5266, type: 3}
   isDead: 0
   note: {fileID: 2038003104523558735}
   colorGood: {r: 0.21960786, g: 0.20784315, b: 0.33333334, a: 1}
   colorNeutral: {r: 0.60784316, g: 0.6117647, b: 0.5176471, a: 1}
   colorBad: {r: 0.7254902, g: 0.21176472, b: 0.3921569, a: 1}
-  colorWater: {r: 0.30980393, g: 0.67058825, b: 0.74509805, a: 1}
+  colorWater: {r: 0.30980393, g: 0.45490196, b: 0.74509805, a: 1}
   length: 3
 --- !u!120 &87303691240767311
 LineRenderer:

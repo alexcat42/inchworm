@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlueJay : MonoBehaviour
 {
     public float speed;
-    public float flySpeed;
+    //public float flySpeed;
     public bool faceRight;
 
     private Worm worm;
@@ -16,7 +16,6 @@ public class BlueJay : MonoBehaviour
 
     void Start()
     {
-        worm = GameObject.FindWithTag("Player").GetComponent<Worm>();
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -44,33 +43,37 @@ public class BlueJay : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("TallGrass"))
+        if (!attacking)
         {
-            speed *= -1;
-            rb.velocity = new Vector2(speed, 0.0f);
-            sr.flipX = !sr.flipX;
-        }
+            if (other.CompareTag("TallGrass"))
+            {
+                speed *= -1;
+                rb.velocity = new Vector2(speed, 0.0f);
+                sr.flipX = !sr.flipX;
+            }
 
-        if (other.CompareTag("Player") && !attacking)
-        {
-            attacking = true;
-            anim.Play("Attack");
-            rb.velocity = Vector3.zero;
-            worm.Die("A Blue Jay Ate You!", worm.colorBad);
-            StartCoroutine(Fly());
+            if (other.CompareTag("Player"))
+            {
+                attacking = true;
+                worm = other.GetComponentInParent<Worm>();
+                anim.Play("Attack");
+                rb.velocity = Vector3.zero;
+                worm.Die("A Blue Jay Ate You!", worm.colorBad);
+                StartCoroutine(Fly());
+            }
         }
     }
 
     IEnumerator Fly()
     {
         yield return new WaitForSeconds(1);
+        worm.CarriedAway(transform);
 
-        GameObject.Find("WormBody").transform.parent = transform;
-        GameObject.Find("WormHead").transform.parent = transform;
-        GameObject.Find("WormButt").transform.parent = transform;
-
-        if (!sr.flipX) flySpeed *= -1;
-        rb.velocity = new Vector2(flySpeed, 0.0f);
+        //if (!sr.flipX)
+        //{
+        //    flySpeed *= -1;
+        //}
+        rb.velocity = new Vector2(speed * 2, 0.0f);
 
         anim.Play("Flap");
 

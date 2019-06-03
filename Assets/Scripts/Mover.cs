@@ -68,7 +68,7 @@ public class Mover : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Water") && !isMoving)
+        if (!worm.isDead && !isMoving && other.CompareTag("Water") )
         {
             worm.Die("You Have Drowned!", worm.colorWater);
         }
