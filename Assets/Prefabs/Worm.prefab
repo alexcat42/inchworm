@@ -930,7 +930,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6639244053979038359
 Transform:
   m_ObjectHideFlags: 0
@@ -1417,6 +1417,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Butterfly
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892970133096017842, guid: 5d6f2f47cbb41456bae603cc48e57c89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6061250681932287149, guid: 5d6f2f47cbb41456bae603cc48e57c89,
         type: 3}
