@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8971755826788115832}
   - component: {fileID: 4465400575386877663}
   - component: {fileID: 8587594905655372681}
-  - component: {fileID: 6705297504474138560}
+  - component: {fileID: 37455166992196577}
   m_Layer: 0
   m_Name: BlueJay
   m_TagString: Enemy
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &6705297504474138560
+--- !u!60 &37455166992196577
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,14 +145,14 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.3333334}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -160,10 +160,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.6666667, y: 0.4166667}
-      - {x: -0.6666667, y: 0.041666668}
-      - {x: -0.20833334, y: -0.6666667}
-      - {x: 0.5, y: -0.6666667}
-      - {x: 0.5833334, y: -0.5833334}
-      - {x: 0.5833334, y: -0.25}
-      - {x: 0.083333336, y: 0.4166667}
+    - - {x: -1, y: 0.625}
+      - {x: -1, y: 0.0625}
+      - {x: -0.3125, y: -1}
+      - {x: 0.75, y: -1}
+      - {x: 0.875, y: -0.875}
+      - {x: 0.875, y: -0.375}
+      - {x: 0.125, y: 0.625}
