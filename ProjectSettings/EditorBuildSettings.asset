@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Twinchworm.unity
+    guid: 4f4d49bf99f174f189b59c5e97e191c5
   m_configObjects: {}

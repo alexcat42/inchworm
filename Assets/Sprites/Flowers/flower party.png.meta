@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: fda6f925b4eab4ce288d1d7b0de130ba
+guid: da6e984e842734598a927e98c5be61c0
 TextureImporter:
   fileIDToRecycleName:
-    21300000: butterfly flapping_0
-    21300002: butterfly flapping_1
+    21300000: flower party_0
+    21300002: flower party_1
+    21300004: flower party_2
+    21300006: flower party_3
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -86,7 +88,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: butterfly flapping_0
+      name: flower party_0
       rect:
         serializedVersion: 2
         x: 0
@@ -100,13 +102,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8de37cca954de4cfcaa9876788430588
+      spriteID: 3786707fd81e945f99e244cb058602fd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: butterfly flapping_1
+      name: flower party_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dabcb9b54c494b948935fc19e0b2393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower party_2
       rect:
         serializedVersion: 2
         x: 0
@@ -120,7 +142,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8453934ea1a434d71af4f8f90f5dc868
+      spriteID: 9cc128880a36b4fe9ba6aaac7d2ae25c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flower party_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 089fbc20007024b898e8b8c7f56dc41a
       vertices: []
       indices: 
       edges: []
@@ -128,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6b034d49caa0f4c1cbe19494459b476c
+    spriteID: 33792befaa6a646f8a4ca47193a1849d
     vertices: []
     indices: 
     edges: []

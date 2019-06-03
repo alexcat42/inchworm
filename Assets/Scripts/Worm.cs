@@ -15,6 +15,7 @@ public class Worm : MonoBehaviour
     public Transform butt;
     public Sprite[] bodySprites;
     public bool isDead;
+    public bool onTurtle;
 
     // Wormy UI
     public Text note;
@@ -135,5 +136,14 @@ public class Worm : MonoBehaviour
         //body.GetComponent<Rigidbody2D>().isKinematic = true;
         head.GetComponent<Rigidbody2D>().isKinematic = true;
         butt.GetComponent<Rigidbody2D>().isKinematic = true;
+    }
+
+    public void RideTurtle(Transform turtle)
+    {
+        onTurtle = true;
+        //body.parent = turtle;
+        //head.parent = turtle;
+        //butt.parent = turtle;
+
     }
 }

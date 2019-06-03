@@ -9,16 +9,17 @@ public class Turtle : MonoBehaviour
     public bool faceRight;
 
     private Worm worm;
-    private Animator anim;
+    //private Animator anim;
     private SpriteRenderer sr;
     private Rigidbody2D rb;
 
     private bool carryingWorm;
     private bool moving;
+    private bool waiting;
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -34,7 +35,7 @@ public class Turtle : MonoBehaviour
         }
 
         rb.velocity = new Vector2(speed, 0.0f);
-        anim.Play("Walk");
+        moving = true;
     }
 
     void Update()
@@ -51,30 +52,44 @@ public class Turtle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Grass"))
+        if (moving && !other.CompareTag("Water"))
         {
-            speed *= -1;
-            rb.velocity = new Vector2(speed, 0.0f);
-            sr.flipX = !sr.flipX;
+            StartCoroutine(WaitAtBank());
         }
 
-        if (other.CompareTag("Player"))
+        else if (waiting && other.CompareTag("Player"))
         {
             carryingWorm = true;
             worm = other.GetComponentInParent<Worm>();
-            anim.Play("Attack");
+            worm.RideTurtle(transform);
+            //anim.Play("Attack");
             rb.velocity = Vector3.zero;
             //worm.Die("A Blue Jay Ate You!", worm.colorBad);
-           //StartCoroutine(Fly());
+            //StartCoroutine(Fly());
         }
+
     }
 
-    IEnumerator Wait()
+    IEnumerator WaitAtBank()
     {
-        yield return new WaitForSeconds(1);
-        worm.CarriedAway(transform);
-        rb.velocity = new Vector2(speed * 2, 0.0f);
-        anim.Play("Flap");
+        waiting = true;
 
+        // Stop Turtle Movement
+        Vector2 vel = rb.velocity;
+        rb.velocity = Vector2.zero;
+
+        // Wait for half the time
+        yield return new WaitForSeconds(delayAtBank / 2);
+
+        // Flip Turtle Around
+        sr.flipX = !sr.flipX;
+        vel.x *= -1;
+
+        // Wait again
+        yield return new WaitForSeconds(delayAtBank / 2);
+
+        // Send the turtle on its way
+        rb.velocity = vel;
+        waiting = false;
     }
 }

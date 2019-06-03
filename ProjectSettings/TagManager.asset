@@ -7,6 +7,7 @@ TagManager:
   - Water
   - Enemy
   - TallGrass
+  - Turtle
   layers:
   - Default
   - TransparentFX
