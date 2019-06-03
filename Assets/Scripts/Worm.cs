@@ -14,6 +14,7 @@ public class Worm : MonoBehaviour
     public Transform butt;
     public Sprite[] bodySprites;
     public bool isDead;
+    public bool active;
     public bool onTurtle;
     //public int mysticFlowerPieces;
 
@@ -25,6 +26,7 @@ public class Worm : MonoBehaviour
     public Color colorWater;
     public GameObject[] panels;
     public Text mysticFlowerText;
+    public GameObject butterfly;
 
     [HideInInspector]
     public float length;
@@ -71,6 +73,8 @@ public class Worm : MonoBehaviour
         //DisplayMessage("Twinchworm, Let's Go!", colorGood);
         UpdateFlowerText();
         //line = GetComponent<LineRenderer>();
+
+        butterfly.SetActive(false);
     }
 
     // Update is called once per frame
@@ -186,15 +190,15 @@ public class Worm : MonoBehaviour
     public void GetOnTurtle(Transform turtleTransform)
     {
         onTurtle = true;
-        if (headMover.onTurtle && buttMover.onTurtle)
-        {
+        //if (headMover.onTurtle && buttMover.onTurtle)
+        //{
             //body.position = turtle.position;
             turtle = turtleTransform;
-            bodyOffset = turtle.position - body.position;
-            headOffset = turtle.position - head.position;
-            buttOffset = turtle.position - butt.position;
+            bodyOffset =  body.position - turtle.position;
+            headOffset = head.position - turtle.position;
+            buttOffset = butt.position - turtle.position;
 
-        }
+        //}
     }
 
     public void GetOffTurtle()
@@ -207,12 +211,12 @@ public class Worm : MonoBehaviour
 
     void RideTurtle()
     {
-        if (turtle != null)
-        {
-            body.position = turtle.position + bodyOffset;
-            head.position = turtle.position + headOffset;
-            butt.position = turtle.position + buttOffset;
-        }
+        //if (turtle != null && turtle.GetComponent<Turtle>().moving)
+        //{
+        //    body.position = turtle.position + bodyOffset;
+        //    head.position = turtle.position + headOffset;
+        //    butt.position = turtle.position + buttOffset;
+        //}
     }
 
     public void CollectFlower(Transform flowerTransform)
@@ -220,6 +224,10 @@ public class Worm : MonoBehaviour
         checkpoints.mysticFlowerPieces++;
         cocoon.transform.position = flowerTransform.position;
         UpdateFlowerText();
+        if (checkpoints.mysticFlowerPieces >= checkpoints.mysticFlowersTotal)
+        {
+            Butterfly();
+        }
     }
 
     void UpdateFlowerText()
@@ -227,6 +235,27 @@ public class Worm : MonoBehaviour
         string flowersCurrent = checkpoints.mysticFlowerPieces.ToString();
         string flowersTotal = checkpoints.mysticFlowersTotal.ToString();
         mysticFlowerText.text = "Mystical Flower Pieces: " + flowersCurrent + "/" + flowersTotal;
+    }
+     
+    void Butterfly()
+    {
+        DisplayMessage("The Mystical Flowers transformed Twinchworm into a Majestic Butterfly!", colorGood);
+        bodySR.enabled = false;
+        headSR.enabled = false;
+        buttSR.enabled = false;
+        active = false;
+        butt.gameObject.SetActive(false);
+        head.gameObject.SetActive(false);
+        body.gameObject.SetActive(false);
+        butterfly.transform.position = body.position;
+        butterfly.SetActive(true);
+        StartCoroutine(RestartWithDelay());
+    }
+
+    IEnumerator RestartWithDelay()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(0);
     }
 
     void GoToCheckpoint()

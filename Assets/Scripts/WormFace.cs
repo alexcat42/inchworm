@@ -17,7 +17,7 @@ public class WormFace : MonoBehaviour
     {
         if (other.CompareTag("Turtle"))
         {
-            mover.onTurtle = true;
+            mover.Anchor(other.GetComponent<Rigidbody2D>());
             worm.GetOnTurtle(other.transform);
         }
 
@@ -29,8 +29,12 @@ public class WormFace : MonoBehaviour
 
         if (other.CompareTag("Message"))
         {
-            string message = other.GetComponent<MessageBlock>().message;
-            worm.DisplayMessage(message, worm.colorGood);
+            MessageBlock mb = other.GetComponent<MessageBlock>();
+            if (!mb.muted)
+            {
+                worm.DisplayMessage(mb.message, worm.colorGood);
+                mb.Mute();
+            }
         }
     }
 
@@ -38,7 +42,7 @@ public class WormFace : MonoBehaviour
     {
         if (other.CompareTag("Turtle"))
         {
-            mover.onTurtle = false;
+            mover.DeAnchor();
             worm.GetOffTurtle();
         }
     }
@@ -47,7 +51,7 @@ public class WormFace : MonoBehaviour
     {
         if (other.CompareTag("Water"))
         {
-            if (!worm.isDead && !mover.onTurtle && !mover.isMoving)
+            if (!worm.isDead && !worm.onTurtle && !mover.isMoving)
                 worm.Die("You Have Drowned!", worm.colorWater);
         }
     }

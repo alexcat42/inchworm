@@ -8,14 +8,14 @@ public class Turtle : MonoBehaviour
     public float delayAtBank;
     public bool faceRight;
 
-    private Worm worm;
+    //private Worm worm;
     //private Animator anim;
     private SpriteRenderer sr;
     private Rigidbody2D rb;
 
-    private bool carryingWorm;
-    private bool moving;
-    private bool waiting;
+    //private bool carryingWorm;
+    public bool moving;
+    //private bool waiting;
 
     void Start()
     {
@@ -47,8 +47,6 @@ public class Turtle : MonoBehaviour
         // If player head/butt enters, then carryingWorm = true
         // If other player segment enters, then moving = true, and keep going
         // Cancel that! Much easier to just have him patrol!
-
-
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -73,12 +71,13 @@ public class Turtle : MonoBehaviour
 
     IEnumerator WaitAtBank()
     {
-        waiting = true;
+        //waiting = true;
         moving = false;
 
         // Stop Turtle Movement
         Vector2 vel = rb.velocity;
         rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
 
         // Wait for half the time
         yield return new WaitForSeconds(delayAtBank / 2);
@@ -91,8 +90,9 @@ public class Turtle : MonoBehaviour
         yield return new WaitForSeconds(delayAtBank / 2);
 
         // Send the turtle on its way
+        rb.isKinematic = false;
         rb.velocity = vel;
-        waiting = false;
+        //waiting = false;
         moving = true;
     }
 }

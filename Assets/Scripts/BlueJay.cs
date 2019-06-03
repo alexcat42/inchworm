@@ -49,18 +49,24 @@ public class BlueJay : MonoBehaviour
             {
                 speed *= -1;
                 rb.velocity = new Vector2(speed, 0.0f);
-                sr.flipX = !sr.flipX;
+                //sr.flipX = !sr.flipX;
+                Vector3 scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
             }
 
             if (other.CompareTag("Player"))
             {
-                attacking = true;
-                anim.Play("Attack");
-                rb.velocity = Vector3.zero;
                 worm = other.GetComponentInParent<Worm>();
-                if (worm != null)
-                    worm.Die("A Blue Jay Ate You!", worm.colorBad);
-                StartCoroutine(Fly());
+                if (worm.active)
+                {
+                    attacking = true;
+                    anim.Play("Attack");
+                    rb.velocity = Vector3.zero;
+                    if (worm != null)
+                        worm.Die("A Blue Jay Ate You!", worm.colorBad);
+                    StartCoroutine(Fly());
+                }
             }
         }
     }
@@ -69,13 +75,8 @@ public class BlueJay : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         worm.CarriedAway(transform);
-
-        //if (!sr.flipX)
-        //{
-        //    flySpeed *= -1;
-        //}
+        GetComponent<PolygonCollider2D>().enabled = false;
         rb.velocity = new Vector2(speed * 2, 0.0f);
-
         anim.Play("Flap");
 
     }

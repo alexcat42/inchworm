@@ -16,6 +16,7 @@ public class Mover : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     private Animator anim;
+    private Joint2D joint;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Mover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        joint = GetComponent<Joint2D>();
     }
 
     // Update is called once per frame
@@ -85,6 +87,21 @@ public class Mover : MonoBehaviour
         anim.Play("Sad");
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0.0f;
+    }
+
+
+    public void Anchor(Rigidbody2D turtleRB)
+    {
+        joint.enabled = true;
+        joint.connectedBody = turtleRB;
+        onTurtle = true;
+    }
+
+    public void DeAnchor()
+    {
+        joint.enabled = false;
+        joint.connectedBody = null;
+        onTurtle = false;
     }
 
 }
