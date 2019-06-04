@@ -17,7 +17,7 @@ public class WormFace : MonoBehaviour
     {
         if (other.CompareTag("Turtle"))
         {
-            mover.Anchor(other.GetComponent<Rigidbody2D>());
+            mover.Anchor(other.transform);
             worm.GetOnTurtle(other.transform);
         }
 

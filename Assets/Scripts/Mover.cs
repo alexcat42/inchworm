@@ -11,12 +11,14 @@ public class Mover : MonoBehaviour
     public GameObject otherEnd;
     public bool isMoving;
     public bool onTurtle;
+    public Joint2D joint;
 
     private Mover otherMover;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     private Animator anim;
-    private Joint2D joint;
+    private Transform turtle;
+    private Vector3 turtleOffset;
 
     // Start is called before the first frame update
     void Start()
@@ -25,23 +27,29 @@ public class Mover : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        joint = GetComponent<Joint2D>();
+        //joint = GetComponent<Joint2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        float h = Input.GetAxisRaw(horizontalAxis);
+        float v = Input.GetAxisRaw(verticalAxis);
+
         if (!worm.isDead)
         {
             Move();
+        }
+
+        if (onTurtle && !isMoving)
+        {
+            transform.position = turtle.position + turtleOffset;
         }
 
     }
 
     void Move()
     {
-        float h = Input.GetAxisRaw(horizontalAxis);
-        float v = Input.GetAxisRaw(verticalAxis);
         //Vector3 move = Vector3.ClampMagnitude(new Vector3(h, v), 1.0f);
 
         if (!otherMover.isMoving && (Mathf.Abs(h) > 0 || Mathf.Abs(v) > 0))
@@ -90,18 +98,21 @@ public class Mover : MonoBehaviour
     }
 
 
-    public void Anchor(Rigidbody2D turtleRB)
+    public void Anchor(Transform t)
     {
-        joint.enabled = true;
-        joint.connectedBody = turtleRB;
+        //joint.enabled = true;
+        //joint.connectedBody = turtleRB;
         onTurtle = true;
+        turtle = t;
+        turtleOffset = transform.position - turtle.position;
     }
 
     public void DeAnchor()
     {
-        joint.enabled = false;
-        joint.connectedBody = null;
+        //joint.enabled = false;
+        //joint.connectedBody = null;
         onTurtle = false;
+        turtle = null;
     }
 
 }
