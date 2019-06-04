@@ -58,6 +58,7 @@ public class Worm : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        active = true;
         offset = Camera.main.transform.position - body.position;
         GoToCheckpoint();
         bodySR = body.gameObject.GetComponent<SpriteRenderer>();
@@ -134,6 +135,7 @@ public class Worm : MonoBehaviour
     public void Die(string message, Color messageColor)
     {
         isDead = true;
+        active = false;
 
         head.GetComponent<Mover>().Die();
         butt.GetComponent<Mover>().Die();
@@ -256,7 +258,9 @@ public class Worm : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         Destroy(checkpoints.gameObject);
-        SceneManager.LoadScene(0);
+        int scene = SceneManager.GetActiveScene().buildIndex;
+        int nextScene = scene++;
+        SceneManager.LoadScene(nextScene);
     }
 
     void GoToCheckpoint()
