@@ -124,10 +124,10 @@ public class Worm : MonoBehaviour
             butt.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
 
-        if (onTurtle)
-        {
-            RideTurtle();
-        }
+        //if (onTurtle)
+        //{
+        //    RideTurtle();
+        //}
         //Debug.Log("Worm Length: " + length + " | Worm Sprite: " + bodySR.sprite.name);
 
     }
@@ -159,14 +159,15 @@ public class Worm : MonoBehaviour
 
     public void DisplayMessage(string message, Color messageColor)
     {
+        StopCoroutine("TextDelay");
         note.color = messageColor;
         note.text = message;
-        StartCoroutine(TextDelay());
+        StartCoroutine("TextDelay");
     }
 
     private IEnumerator TextDelay()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         note.text = "";
     }
 
@@ -192,15 +193,6 @@ public class Worm : MonoBehaviour
     public void GetOnTurtle(Transform turtleTransform)
     {
         onTurtle = true;
-        //if (headMover.onTurtle && buttMover.onTurtle)
-        //{
-            //body.position = turtle.position;
-            //turtle = turtleTransform;
-            //bodyOffset =  body.position - turtle.position;
-            //headOffset = head.position - turtle.position;
-            //buttOffset = butt.position - turtle.position;
-
-        //}
     }
 
     public void GetOffTurtle()
@@ -241,7 +233,7 @@ public class Worm : MonoBehaviour
      
     void Butterfly()
     {
-        DisplayMessage("The Mystical Flowers transformed Twinchworm into a Majestic Butterfly!", colorGood);
+        DisplayMessage(checkpoints.victoryMessage, colorGood);
         bodySR.enabled = false;
         headSR.enabled = false;
         buttSR.enabled = false;
@@ -251,15 +243,15 @@ public class Worm : MonoBehaviour
         body.gameObject.SetActive(false);
         butterfly.transform.position = body.position;
         butterfly.SetActive(true);
+        butterfly.GetComponent<Rigidbody2D>().velocity = Vector2.up / 1.5f;
         StartCoroutine(RestartWithDelay());
     }
 
     IEnumerator RestartWithDelay()
     {
-        yield return new WaitForSeconds(5);
+        int nextScene = checkpoints.nextScene;
+        yield return new WaitForSeconds(8);
         Destroy(checkpoints.gameObject);
-        int scene = SceneManager.GetActiveScene().buildIndex;
-        int nextScene = scene++;
         SceneManager.LoadScene(nextScene);
     }
 

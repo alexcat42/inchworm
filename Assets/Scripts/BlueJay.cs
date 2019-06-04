@@ -64,7 +64,7 @@ public class BlueJay : MonoBehaviour
                     anim.Play("Attack");
                     rb.velocity = Vector3.zero;
                     if (worm != null)
-                        worm.Die("A Blue Jay Ate You!", worm.colorBad);
+                        worm.Die("Oh no! A Blue Jay ate Twinchworm!", worm.colorBad);
                     StartCoroutine(Fly());
                 }
             }

@@ -179,6 +179,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 816039893560541810, guid: dc60049597c454a22829aa285ff3688e,
+        type: 3}
+      propertyPath: nextScene
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 816039893560541810, guid: dc60049597c454a22829aa285ff3688e,
+        type: 3}
+      propertyPath: victoryMessage
+      value: Nice work, Twinchworm! Now find the other Mystical Flowers!
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc60049597c454a22829aa285ff3688e, type: 3}
 --- !u!4 &199700845 stripped

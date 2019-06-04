@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Checkpoints : MonoBehaviour
 {
+    public int nextScene;
+    public string victoryMessage;
+
     [HideInInspector]
     public int mysticFlowerPieces;
     [HideInInspector]

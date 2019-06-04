@@ -38,25 +38,18 @@ public class Mover : MonoBehaviour
         {
             if (onTurtle)
             {
-                //if (!isMoving && !anchoredToTurtle)
-                //{
-                //    AnchorToTurtle();
-                //}
                 if (turtle.GetComponent<Turtle>().moving)
                 {
-                    rb.position = turtle.position;
+                    rb.position = turtle.position + turtleOffset;
                 }
                 //otherEnd.transform.position = turtle.position + turtleOffset;
                 else
                 {
                     Move();
+                    turtleOffset = transform.position - turtle.position;
                 }
             }
             else { // If not on turtle
-                //if (anchoredToTurtle)
-                //{
-                //    DeAnchor();
-                //}
                 onTurtle = false;
                 Move();
             }
@@ -118,12 +111,14 @@ public class Mover : MonoBehaviour
     }
 
 
-
     public void OnTurtle(Transform t)
     {
-        onTurtle = true;
-        turtle = t; 
-        turtleOffset = transform.position - turtle.position;
+        if (!otherMover.onTurtle)
+        {
+            onTurtle = true;
+            turtle = t;
+            //turtleOffset = transform.position - turtle.position;
+        }
     }
 
     public void OffTurtle()

@@ -54,7 +54,7 @@ public class WormFace : MonoBehaviour
         else if (other.CompareTag("Water"))
         {
             if (!worm.isDead && !worm.onTurtle && !mover.isMoving)
-                worm.Die("You Have Drowned!", worm.colorWater);
+                worm.Die("Twinchworm does NOT like the water!", worm.colorWater);
         }
     }
 
