@@ -51,9 +51,12 @@ public class Turtle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (moving && !other.CompareTag("Water"))
+        if (moving)
         {
-            StartCoroutine(WaitAtBank());
+            if (other.tag != "Water" && other.tag != "Player")
+            {
+                StartCoroutine(WaitAtBank());
+            }
         }
 
         //else if (waiting && other.CompareTag("Player"))

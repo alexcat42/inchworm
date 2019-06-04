@@ -15,11 +15,6 @@ public class WormFace : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Turtle"))
-        {
-            mover.Anchor(other.transform);
-            worm.GetOnTurtle(other.transform);
-        }
 
         if (other.CompareTag("MysticFlower"))
         {
@@ -42,14 +37,21 @@ public class WormFace : MonoBehaviour
     {
         if (other.CompareTag("Turtle"))
         {
-            mover.DeAnchor();
+            mover.OffTurtle();
             worm.GetOffTurtle();
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Water"))
+
+        if (other.CompareTag("Turtle"))
+        {
+            mover.OnTurtle(other.transform);
+            worm.GetOnTurtle(other.transform);
+        }
+
+        else if (other.CompareTag("Water"))
         {
             if (!worm.isDead && !worm.onTurtle && !mover.isMoving)
                 worm.Die("You Have Drowned!", worm.colorWater);

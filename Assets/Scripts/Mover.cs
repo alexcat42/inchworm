@@ -11,6 +11,7 @@ public class Mover : MonoBehaviour
     public GameObject otherEnd;
     public bool isMoving;
     public bool onTurtle;
+    public bool anchoredToTurtle;
     public Joint2D joint;
 
     private Mover otherMover;
@@ -33,23 +34,41 @@ public class Mover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float h = Input.GetAxisRaw(horizontalAxis);
-        float v = Input.GetAxisRaw(verticalAxis);
-
         if (!worm.isDead)
         {
-            Move();
-        }
+            if (onTurtle)
+            {
+                //if (!isMoving && !anchoredToTurtle)
+                //{
+                //    AnchorToTurtle();
+                //}
+                if (turtle.GetComponent<Turtle>().moving)
+                {
+                    rb.position = turtle.position;
+                }
+                //otherEnd.transform.position = turtle.position + turtleOffset;
+                else
+                {
+                    Move();
+                }
+            }
+            else { // If not on turtle
+                //if (anchoredToTurtle)
+                //{
+                //    DeAnchor();
+                //}
+                onTurtle = false;
+                Move();
+            }
 
-        if (onTurtle && !isMoving)
-        {
-            transform.position = turtle.position + turtleOffset;
         }
 
     }
 
     void Move()
     {
+        float h = Input.GetAxisRaw(horizontalAxis);
+        float v = Input.GetAxisRaw(verticalAxis);
         //Vector3 move = Vector3.ClampMagnitude(new Vector3(h, v), 1.0f);
 
         if (!otherMover.isMoving && (Mathf.Abs(h) > 0 || Mathf.Abs(v) > 0))
@@ -72,7 +91,8 @@ public class Mover : MonoBehaviour
         {
             isMoving = false;
             rb.velocity = Vector2.zero;
-            rb.mass = 100;
+            if (!otherMover.anchoredToTurtle)
+                rb.mass = 100;
             anim.Play("Idle");
         }
     }
@@ -98,21 +118,35 @@ public class Mover : MonoBehaviour
     }
 
 
-    public void Anchor(Transform t)
+
+    public void OnTurtle(Transform t)
     {
-        //joint.enabled = true;
-        //joint.connectedBody = turtleRB;
         onTurtle = true;
-        turtle = t;
+        turtle = t; 
         turtleOffset = transform.position - turtle.position;
     }
 
-    public void DeAnchor()
+    public void OffTurtle()
     {
-        //joint.enabled = false;
-        //joint.connectedBody = null;
         onTurtle = false;
         turtle = null;
     }
+
+
+    //public void AnchorToTurtle()
+    //{
+    //    //joint.enabled = true;
+    //    //joint.connectedBody = turtleRB;
+    //    anchoredToTurtle = true;
+    //    turtleOffset = transform.position - turtle.position;
+    //}
+
+    //public void DeAnchor()
+    //{
+    //    //joint.enabled = false;
+    //    //joint.connectedBody = null;
+    //    onTurtle = false;
+    //    turtle = null;
+    //}
 
 }

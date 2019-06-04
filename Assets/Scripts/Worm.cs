@@ -193,10 +193,10 @@ public class Worm : MonoBehaviour
         //if (headMover.onTurtle && buttMover.onTurtle)
         //{
             //body.position = turtle.position;
-            turtle = turtleTransform;
-            bodyOffset =  body.position - turtle.position;
-            headOffset = head.position - turtle.position;
-            buttOffset = butt.position - turtle.position;
+            //turtle = turtleTransform;
+            //bodyOffset =  body.position - turtle.position;
+            //headOffset = head.position - turtle.position;
+            //buttOffset = butt.position - turtle.position;
 
         //}
     }
